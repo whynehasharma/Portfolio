@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Neha Sharma — Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfolio of Neha Sharma — projects, skills, and contact information." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta property="og:title" content="Neha Sharma — Portfolio" />
+  <meta property="og:description" content="Projects, skills, and contact." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preload" href="style.css" as="style" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🚀%3C/text%3E%3C/svg%3E">
+
+  <style>
+    /* Small utility styles added so the file is usable even without style.css.
+       Remove or merge with your main style.css as needed. */
+    :root { --bg: #0f172a; --fg: #e6eef8; --muted: #9aa8bd; }
+    html.light { --bg: #f7f9fc; --fg: #0f172a; --muted: #4b5563; }
+    body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.5;margin:0}
+    .container{max-width:1100px;margin:0 auto;padding:0.4rem 1rem;}
+    .nav{display:flex;align-items:center;gap:1rem;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:inherit;font-weight:600}
+    .brand-img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+
+    /* HERO LAYOUT: tighter spacing so hero fits on landing page */
+    .hero { padding: 0px 0 20px; }
+    .hero-layout{display:grid;grid-template-columns:1fr 260px;gap:1.2rem;align-items:center}
+    .hero-text{max-width:64ch}
+
+    @media (max-width:1000px){
+      .hero-layout{grid-template-columns:1fr 300px}
+    }
+    @media (max-width:800px){
+      .hero-layout{grid-template-columns:1fr;padding:0 0 12px;text-align:center}
+      #siteNav{display:none}
+      .hamburger{display:inline-flex}
+      .hero-text{max-width:none}
+    }
+
+    /* profile image (circular) */
+    .hero-img{width:220px;height:220px;border-radius:50%;object-fit:cover;border:6px solid rgba(255,255,255,0.06);box-shadow:0 12px 30px rgba(0,0,0,0.6)}
+    @media (max-width:640px){ .hero-img{width:200px;height:200px;margin:0 auto} }
+
+    .eyebrow{opacity:.9;margin:0}
+    .hero-title{font-size:clamp(1.8rem,4vw,2.6rem);margin:.2rem 0;line-height:1.02}
+    .lead p{margin:.5rem 0;color:var(--muted);max-width:62ch}
+    .actions{display:flex;gap:.8rem;margin:14px 0 6px}
+    .meta{list-style:none;padding:0;margin:10px 0 0 0;display:flex;flex-wrap:wrap;gap:1rem}
+    .meta li{display:inline-block;margin-right:1rem;color:var(--muted)}
+
+    .btn{display:inline-block;padding:.55rem .9rem;border-radius:8px;background:linear-gradient(180deg,#6ee7b7,#4fd3a6);border:none;color:#07101a;text-decoration:none}
+    .btn.ghost{background:transparent;border:1px dashed rgba(255,255,255,.06);color:var(--fg)}
+    .btn.small{padding:.35rem .6rem;font-size:.9rem}
+
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;background:#fff;color:#000;padding:.25rem .5rem;border-radius:4px}
+    .social-links img.icon{width:18px;height:18px;display:inline-block}
+    .hamburger{background:none;border:0;padding:.25rem;display:none;flex-direction:column;gap:4px}
+    .hamburger span{width:22px;height:2px;background:currentColor;display:block;border-radius:2px}
+    .site-nav a{margin-right:1rem;text-decoration:none;color:inherit}
+    .site-nav.show{display:block}
+
+    footer{border-top:1px solid rgba(255,255,255,.03);padding:1rem 0;margin-top:2rem}
+    .contact-form .field{margin-bottom:.75rem}
+    input,textarea{width:100%;padding:.5rem;border-radius:6px;border:1px solid rgba(255,255,255,.06);background:transparent;color:inherit}
+  
+/* Button wrap + responsive tweaks to ensure buttons fit */
+.actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.btn{padding:10px 14px}
+.btn.small{padding:6px 10px;font-size:0.9rem}
+/* Make buttons smaller on narrow screens */
+@media (max-width:980px){
+  .actions{justify-content:center}
+  .btn{padding:8px 12px;font-size:0.95rem}
+  .btn.small{padding:6px 8px;font-size:0.85rem}
+}
+@media (max-width:640px){
+  .actions{flex-direction:column;align-items:center}
+  .btn{width:min(220px,80%);padding:10px 12px}
+  .btn.small{width:min(220px,80%)}
+  .meta{justify-content:center}
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#">
+        <img src="images/profile.png" alt="Neha Sharma" class="brand-img">
+        Neha<span>Sharma</span>
+      </a>
+
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">🌓</button>
+
+        <button class="hamburger" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <nav id="siteNav" class="site-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a class="btn small" href="#contact">Hire me</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="section hero" aria-label="Intro">
+      <div class="container hero-layout">
+        <div class="hero-text">
+          <p class="eyebrow">Hello, I’m</p>
+          <h1 class="hero-title">Neha Sharma</h1>
+
+          <div class="lead">
+            <p>I’m a third-year Computer Science and Engineering student passionate about software development, cloud computing, and scalable systems. I love creating impactful digital experiences that combine efficient backend logic with seamless, user-friendly design.</p>
+
+            <p>I specialize in the <strong>MERN stack</strong>, building full-stack applications that focus on performance and usability. As the <strong>Founder &amp; Team Lead of Scrap Saver</strong>, I led my team to become the <strong>1st Runner-Up at TiE Bangalore 2025</strong>, developing tech-driven sustainability solutions.</p>
+
+            <p>As the <strong>Cloud Lead at GDG On Campus Atria</strong>, I’ve mentored 200+ students in the <strong>Google Cloud Study Jam 2025</strong> and helped the community achieve Tier 1 status.</p>
+
+            <p>I believe in learning by building — crafting technology that inspires innovation and drives meaningful impact. 🚀</p>
+          </div>
+
+          <div class="actions" style="margin-top:1rem">
+            <a class="btn" href="#projects">View Projects</a>
+            <a class="btn ghost" href="#contact">Let’s Talk</a>
+          </div>
+
+          <ul class="meta" aria-hidden="false">
+            <li>📍 Bengaluru, India</li>
+            <li>📧 <a href="mailto:nehasharma147@outlook.com">nehasharma147@outlook.com</a></li>
+            <li class="social-links">
+              <a href="https://github.com/whynehasharma" target="_blank" class="social-link" aria-label="GitHub profile">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub" class="icon" loading="lazy">
+              </a>
+              <a href="https://www.linkedin.com/in/neha-sharma-8b398b2a2/" target="_blank" class="social-link" aria-label="LinkedIn profile">
+                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" class="icon" loading="lazy">
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero-img-wrap" aria-hidden="true">
+          <img src="images/profile.png" alt="Portrait of Neha Sharma" class="hero-img" width="320" height="320" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="container narrow">
+        <h2>About</h2>
+        <p>I build efficient, scalable, and user-focused applications that bring ideas to life through technology. As a MERN Stack Developer/Full Stack Developer, I combine strong backend logic with clean, responsive front-end design to create seamless digital experiences.</p>
+        <div class="cards">
+          <article class="card">
+            <h3>What I Do</h3>
+            <p>Full Stack Development, Cloud &amp; DevOps, Problem Solving, Leadership &amp; Mentorship</p>
+          </article>
+          <article class="card">
+            <h3>Stack</h3>
+            <p>MongoDB, Express.js, React.js, and Node.js with experience in full-stack web development, cloud deployment, and API integration</p>
+          </article>
+          <article class="card">
+            <h3>Currently</h3>
+            <p>Open to freelance &amp; full-time roles. Available from Dec '25.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects (example) -->
+    <section id="projects" class="section alt">
+      <div class="container">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+          <article class="project">
+            <h3>Bhatia Educational Website</h3>
+            <p>A responsive educational platform built with modern web technologies to provide an engaging learning experience.</p>
+            <ul class="tags">
+              <li>React.js</li>
+              <li>TypeScript</li>
+              <li>Tailwind CSS</li>
+              <li>Vite</li>
+            </ul>
+            <div class="project-meta">
+              <span class="date">Sep 2025 - Nov 2025</span>
+              <a href="https://www.bhatiaeducational.com" target="_blank" rel="noopener" class="btn small">Visit Site</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>SenseBot — IoT-Based Mining Safety Robot</h3>
+            <p>SenseBot is an IoT-enabled robot developed during the IoT Internship at Comedkares Yelahanka. Built with ESP32, gas, temperature, humidity, and ultrasonic sensors, it monitors hazardous mining conditions and sends real-time alerts through the Blynk app, enabling remote monitoring and reducing human risk.</p>
+            <ul class="tags">
+              <li>Blynk</li>
+              <li>ESP32</li>
+              <li>IoT</li>
+            </ul>
+            <div class="project-meta">
+              <span class="date">2025</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>Property Rental Website</h3>
+            <p>Developed a full-stack property rental platform using Node.js, Express, and MongoDB with server-rendered EJS templates. Features include authentication, dynamic listings, booking system, and a responsive UI powered by RESTful APIs.</p>
+            <ul class="tags">
+              <li>Node.js</li>
+              <li>Express.js</li>
+              <li>MongoDB</li>
+              <li>EJS</li>
+              <li>REST APIs</li>
+            </ul>
+            <div class="project-meta">
+              <span class="date">2024</span>
+            </div>
+          </article>
+        </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="section">
+      <div class="container">
+        <h2 class="section-title">Experience &amp; Education</h2>
+
+        <div class="experience-grid" aria-labelledby="exp-title">
+          <h3 id="exp-title" class="grid-section-title">Experience</h3>
+
+          <div class="grid-container" role="list">
+            <article class="grid-card" role="listitem">
+              <div class="card-date">Aug 2025 - Present · 4 mos</div>
+              <h4>Cloud Lead</h4>
+              <div class="company">GDG On Campus Atria</div>
+              <div class="location">Bangalore, India</div>
+              <p>Mentored 200+ students in the Google Cloud Study Jam 2025, led workshops and hands-on labs on GCP fundamentals, and helped the chapter achieve Tier 1 status. Focus areas included cloud architecture, deployment pipelines, and containerization.</p>
+              <div class="tags">
+                <span>Google Cloud</span>
+                <span>Mentorship</span>
+                <span>Workshops</span>
+              </div>
+            </article>
+
+            <article class="grid-card" role="listitem">
+              <div class="card-date">Jun 2025 - Present · 6 mos</div>
+              <h4>Founder &amp; Team Lead</h4>
+              <div class="company">ScrapSaver</div>
+              <div class="location">Bangalore, India · Remote</div>
+              <p>Founded ScrapSaver — a tech-driven sustainability startup focused on optimizing scrap collection and recycling logistics. Led product development, coordinated the team through prototyping and pitching, and secured 1st Runner-Up at TiE Bangalore 2025.</p>
+              <div class="tags">
+                <span>Leadership</span>
+                <span>Sustainability</span>
+                <span>Startup</span>
+              </div>
+            </article>
+
+            <article class="grid-card" role="listitem">
+              <div class="card-date">Sep 2025 - Nov 2025 · 3 mos</div>
+              <h4>Full Stack Developer (Contract)</h4>
+              <div class="company">Bhatia Educational</div>
+              <div class="location">Remote</div>
+              <p>Built and deployed a responsive educational website using React.js, TypeScript, Tailwind CSS, and Vite. Implemented component-driven design, performance optimizations, and accessibility improvements.</p>
+              <div class="tags">
+                <span>React.js</span>
+                <span>TypeScript</span>
+                <span>Tailwind</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="experience-grid" aria-labelledby="edu-title">
+          <h3 id="edu-title" class="grid-section-title">Education</h3>
+
+          <div class="grid-container" role="list">
+            <article class="grid-card" role="listitem">
+              <div class="card-date">2023 - 2027</div>
+              <h4>B.Tech in Computer Science &amp; Engineering</h4>
+              <div class="company">Atria Institute of Technology</div>
+              <div class="achievement">CGPA: 8.95 / 10</div>
+              <p>Relevant coursework: Data Structures &amp; Algorithms, Operating Systems, Databases, Distributed Systems, and Cloud Computing. Active in tech clubs and hackathons; contributed to student projects and mentorship programs.</p>
+              <div class="tags">
+                <span>Algorithms</span>
+                <span>Cloud</span>
+                <span>Full-Stack</span>
+              </div>
+            </article>
+
+            <article class="grid-card" role="listitem">
+              <div class="card-date">2021 - 2023</div>
+              <h4>Class XII (CBSE)</h4>
+              <div class="company">Kendriya Vidyalaya No. 1</div>
+              <div class="achievement">Percentage: 82.4%</div>
+              <p>Science stream with a focus on Computer Science and Mathematics. Participated in coding clubs and inter-school competitions.</p>
+            </article>
+
+            <article class="grid-card" role="listitem">
+              <div class="card-date">2020 - 2021</div>
+              <h4>Class X (CBSE)</h4>
+              <div class="company">Kendriya Vidyalaya No. 1</div>
+              <div class="achievement">Percentage: 93%</div>
+              <p>Strong academic performance; developed early interest in programming, robotics, and problem solving.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <!-- skills content unchanged -->
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section alt">
+      <div class="container narrow">
+        <h2>Contact</h2>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn" type="submit">Send</button>
+          </div>
+          <p id="formStatus" aria-live="polite" style="margin-top:.5rem;color:var(--muted)"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p>© <span id="year"></span> Neha Sharma. All rights reserved.</p>
+      <ul class="social">
+        <li><a href="https://github.com/whynehasharma" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/neha-sharma-8b398b2a2/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+      <a href="#" class="back-to-top" id="backToTop">↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // --- Dynamic Year ---
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- Theme Toggle (respect system preference & persist) ---
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem('theme');
+
+    // initialize
+    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (savedTheme === 'light' || (!savedTheme && prefersLight)) root.classList.add('light');
+    else root.classList.remove('light');
+
+    themeToggle.addEventListener('click', () => {
+      root.classList.toggle('light');
+      const theme = root.classList.contains('light') ? 'light' : 'dark';
+      localStorage.setItem('theme', theme);
+      themeToggle.setAttribute('aria-pressed', root.classList.contains('light'));
+    });
+
+    // --- Mobile nav toggle ---
+    const navToggle = document.getElementById('navToggle');
+    const siteNav = document.getElementById('siteNav');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      // toggle a visible class for small screens
+      siteNav.classList.toggle('show');
+    });
+
+    // Close nav when link clicked (mobile)
+    siteNav.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A' && window.innerWidth <= 800) {
+        siteNav.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // --- Back to top ---
+    document.getElementById('backToTop').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // --- Simple client-side form handling (example) ---
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // simple validation
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if (!name || !email || !message) {
+        status.textContent = 'Please fill all fields.';
+        return;
+      }
+
+      // Example: open mail client as fallback — replace with AJAX endpoint if you have one
+      const mailto = `mailto:nehasharma147@outlook.com?subject=${encodeURIComponent('Portfolio contact from ' + name)}&body=${encodeURIComponent(message + '\n\n' + 'From: ' + name + ' <' + email + '>')}`;
+      window.location.href = mailto;
+      status.textContent = 'Opening mail client...';
+    });
+
+    // Accessibility: focus visible outline for keyboard users
+    (function() {
+      function handleFirstTab(e) {
+        if (e.key === 'Tab') document.body.classList.add('user-is-tabbing');
+      }
+      window.addEventListener('keydown', handleFirstTab, { once: true });
+    })();
+  </script>
+</body>
+</html>

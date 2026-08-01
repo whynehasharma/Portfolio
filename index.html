@@ -345,6 +345,13 @@
           navToggle.setAttribute('aria-expanded', 'false');
         }
       });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 800) {
+          siteNav.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
     }
 
     // --- Back to top ---
